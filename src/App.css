@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.txt {
+  width: 13em;
+}
+
+.pad-top div {
+  padding-top: 5px;
+}
+
+.pad-top div label {
+  width: 15em;
+  display: inline-block;
+  border: 0px solid black;
+  text-align: right;
+  padding-right: 1em;
+}
