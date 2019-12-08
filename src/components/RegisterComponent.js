@@ -22,7 +22,7 @@ class RegisterComponent extends React.Component {
     onSignUpClick(e) {
         e.preventDefault();
 
-        this.props.test(this.state);
+        this.props.signUp(this.state);
     }
 
     onFieldChange(e) {
@@ -67,7 +67,7 @@ class RegisterComponent extends React.Component {
                     <button onClick={ this.onSignUpClick }>Sign up</button>
                 </div>
                 <div>
-                    {/* <h2>{ this.props.fullName }</h2> */}
+                    <h2>{ this.props.fullName }</h2>
                 </div>
             </div>
         );
@@ -86,7 +86,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        test: (data) => dispatch(signUp(data))
+        signUp: (data) => dispatch(signUp(data))
     }
 }
 
