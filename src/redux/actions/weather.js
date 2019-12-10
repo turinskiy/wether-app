@@ -12,7 +12,6 @@ export const getWeather = () => {
             fetch('http://localhost:3001/weather')
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
                     dispatch(getWeatherSuccess(data));
                 })
                 .catch(err => {
@@ -24,8 +23,6 @@ export const getWeather = () => {
         else {
             // debugger
             dispatch(getWeatherSuccess(JSON.parse(savedResponse)));
-
-            console.log('current state: ', getState());
         }
     }
 }

@@ -8,11 +8,10 @@ class SignOutComponentClass extends React.Component {
         super(props);
 
         // Bindings
-        this.onLogOutHandler = this.onLogOutHandler.bind(this);
+        this.onSignOutHandler = this.onSignOutHandler.bind(this);
     }
 
-    onLogOutHandler() {
-        console.log('logged out', this.props);
+    onSignOutHandler() {
         this.props.onSignOut();
     }
 
@@ -21,7 +20,7 @@ class SignOutComponentClass extends React.Component {
         return (
             <div>
             { isLoggedIn 
-                ? <button onClick={ this.onLogOutHandler } >Log out</button>
+                ? <button onClick={ this.onSignOutHandler } >Sign out</button>
                 : null}
             </div>
         );
