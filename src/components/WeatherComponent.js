@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 
 import { getWeather } from '../redux/actions/weather';
-
+import SignOutComponent from './SignOutComponent';
 
 class WeatherComponentClass extends React.Component {
     componentWillMount = () => {
@@ -11,10 +11,11 @@ class WeatherComponentClass extends React.Component {
     }
 
     render() {
-        const { city, weatherDescription, temperature} = this.props;
+        const { city, weatherDescription, temperature, isLoggedIn} = this.props;
         return (
             <div>
                 <h3>{ city } ({ weatherDescription }) { temperature } <sup>o</sup>F</h3>
+                { isLoggedIn ? <SignOutComponent /> : null }
             </div>
         );
     }

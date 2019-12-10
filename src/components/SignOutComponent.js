@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 
-import { signOut } from '../redux/actions/signOut';
+import { signOut } from '../redux/actions/accountActions';
 
 class SignOutComponentClass extends React.Component {
     constructor(props) {
@@ -17,6 +17,7 @@ class SignOutComponentClass extends React.Component {
 
     render() {
         const { isLoggedIn } = this.props;
+
         return (
             <div>
             { isLoggedIn 
