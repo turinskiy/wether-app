@@ -3,7 +3,8 @@ export function signUp(data) {
     return {
         type: 'REGISTER',
         payload: {
-            ...data
+            ...data,
+            isRegistered: true
         }
     };
 }

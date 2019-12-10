@@ -11,7 +11,8 @@ class RegisterComponent extends React.Component {
             // fName: '',
             lName: '',
             phone: '+38(097)-123-45-67',
-            pass: ''
+            pass: '',
+            isLoggedIn: false
         }
 
         // Bindings
@@ -39,6 +40,8 @@ class RegisterComponent extends React.Component {
             case 'pass':
                 this.setState({ pass: e.target.value });
                 break;
+            default:
+                return this.state;
         }
     }
 
@@ -66,9 +69,6 @@ class RegisterComponent extends React.Component {
                 <div>
                     <button onClick={ this.onSignUpClick }>Sign up</button>
                 </div>
-                <div>
-                    <h2>{ this.props.fullName }</h2>
-                </div>
             </div>
         );
     }
@@ -79,8 +79,10 @@ class RegisterComponent extends React.Component {
 // };
 
 const mapStateToProps = (state, ownProps) => {
+    // debugger
     return {
-        fullName: state.register.fName + ' ' + state.register.lName
+        ...state,
+        fullName: state.registerReducer.fName + ' ' + state.registerReducer.lName
     };
 };
 
@@ -90,9 +92,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const RegisterForm = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(RegisterComponent);
+const RegisterForm = connect(mapStateToProps, mapDispatchToProps)(RegisterComponent);
 
 export default RegisterForm;
