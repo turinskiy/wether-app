@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import registerReducer from './registerReducer';
+import accountReducer from './accountReducer';
+import weatherReducer from './weatherReducer';
 
 const rootReducer = combineReducers({
-    registerReducer: registerReducer
+    accountReducer,
+    weatherReducer
 });
 
 export default rootReducer;

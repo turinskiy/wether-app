@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import React from 'react';
 
-import SignUpForm from './components/SignUpComponent';
-import SignInForm from './components/SignInComponent';
+import SignUpForm       from './components/SignUpComponent';
+import SignInForm       from './components/SignInComponent';
 import WeatherComponent from './components/WeatherComponent';
 import SignOutComponent from './components/SignOutComponent';
 
@@ -32,7 +32,8 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   debugger
   return {
-    ...state.registerReducer
+    ...state.accountReducer,
+    ...state.weatherReducer
   }
 }
 

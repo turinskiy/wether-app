@@ -1,22 +1,7 @@
 
-const registerReducer = function (state = {}, action) {
+const weatherReducer = function (state = {}, action) {
     // debugger
     switch(action.type) {
-        case 'SIGN_UP':
-            return {
-                ...state,
-                ...action.payload
-            };
-        case 'SIGN_IN':
-            return {
-                ...state,
-                ...action.payload
-            };
-        case 'SIGN_OUT': 
-            return {
-                ...state,
-                ...action.payload
-            };
         case 'GET_WEATHER':
             return {
                 ...state,
@@ -42,4 +27,4 @@ const registerReducer = function (state = {}, action) {
     }
 }
 
-export default registerReducer;
+export default weatherReducer;

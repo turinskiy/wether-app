@@ -81,8 +81,8 @@ class SignUpComponentClass extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     // debugger
     return {
-        ...state.registerReducer,
-        fullName: state.registerReducer.fName + ' ' + state.registerReducer.lName
+        ...state.accountReducer,
+        fullName: state.accountReducer.fName + ' ' + state.accountReducer.lName
     };
 };
 
