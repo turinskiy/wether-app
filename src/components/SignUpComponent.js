@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import React from 'react';
 
-import { signUp } from '../redux/actions/register';
+import { signUp } from '../redux/actions/signUp';
 
-class RegisterComponent extends React.Component {
+class SignUpComponentClass extends React.Component {
     constructor(props) {
         super(props);
 
@@ -74,14 +74,14 @@ class RegisterComponent extends React.Component {
     }
 }
 
-// RegisterComponent.propTypes = {
+// SignUpComponentClass.propTypes = {
 //     handleSignUp: PropTypes.func.isRequired
 // };
 
 const mapStateToProps = (state, ownProps) => {
     // debugger
     return {
-        ...state,
+        ...state.registerReducer,
         fullName: state.registerReducer.fName + ' ' + state.registerReducer.lName
     };
 };
@@ -92,6 +92,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const RegisterForm = connect(mapStateToProps, mapDispatchToProps)(RegisterComponent);
+const SignUpForm = connect(mapStateToProps, mapDispatchToProps)(SignUpComponentClass);
 
-export default RegisterForm;
+export default SignUpForm;

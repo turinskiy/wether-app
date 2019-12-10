@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import React from 'react';
 
-import { signIn } from '../redux/actions/login';
+import { signIn } from '../redux/actions/signIn';
 
-class LoginComponentClass extends React.Component {
+class SignInComponentClass extends React.Component {
 
     constructor(props) {
         super(props);
@@ -79,5 +79,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const LoginForm = connect(mapStateToProps, mapDispatchToProps)(LoginComponentClass);
-export default LoginForm;
+const SignInForm = connect(mapStateToProps, mapDispatchToProps)(SignInComponentClass);
+export default SignInForm;

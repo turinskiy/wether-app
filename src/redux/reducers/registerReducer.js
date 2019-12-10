@@ -2,16 +2,21 @@
 const registerReducer = function (state = {}, action) {
     // debugger
     switch(action.type) {
-        case 'REGISTER':
+        case 'SIGN_UP':
             return {
                 ...state,
                 ...action.payload
             };
-        case 'LOGIN':
+        case 'SIGN_IN':
             return {
                 ...state,
                 ...action.payload
-            }
+            };
+        case 'SIGN_OUT': 
+            return {
+                ...state,
+                ...action.payload
+            };
         case 'GET_WEATHER':
             return {
                 ...state,

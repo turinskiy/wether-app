@@ -38,7 +38,7 @@ const getWeatherSuccess = obj => {
     const { weather, main, name } = obj;
     const descr = weather[0].description;
     const temp = main.temp;
-    debugger
+    // debugger
     return {
     type: 'GET_WEATHER_SUCCESS', 
     payload: { 

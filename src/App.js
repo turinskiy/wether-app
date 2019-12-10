@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import React from 'react';
 
-import RegisterForm from './components/RegisterComponent';
-import LoginForm from './components/LoginComponent';
+import SignUpForm from './components/SignUpComponent';
+import SignInForm from './components/SignInComponent';
 import WeatherComponent from './components/WeatherComponent';
+import SignOutComponent from './components/SignOutComponent';
 
 class App extends React.Component {
   // constructor(props) {
@@ -19,16 +20,17 @@ class App extends React.Component {
       <div className="App">
         { isRegistered 
           ? !isLoggedIn 
-            ? <LoginForm /> 
+            ? <SignInForm /> 
             : <WeatherComponent />
-          : <RegisterForm /> }
-        
+          : <SignUpForm /> }
+          <SignOutComponent />
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
+  debugger
   return {
     ...state.registerReducer
   }
