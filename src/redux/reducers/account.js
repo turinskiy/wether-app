@@ -13,7 +13,7 @@ function isNameOcupied(users, wantedUserName) {
     return users.some(findName);
 }
 
-function signInUser(users, user) {
+function getRegistredUser(users, user) {
     if(!user || !user.fName) {
         return false;
     }
@@ -29,29 +29,27 @@ const accountReducer = function (state = initialState, action) {
     switch(action.type) {
         case 'SIGN_UP': {
             // debugger
-            const { fName, lName, phone, pass } = action.payload;
-            const user = { fName, lName, phone, pass };
-            state.users.push(user);
-            state.currentUser = user;
+            const { payload } = action;      
 
             return {
                 ...state,
-                ...action.payload,
+                users : [ ...state.users, payload ],
+                currentUser: payload,
                 isLoggedIn: true,
-                fullName: user.fName + ' ' + user.lName
+                fullName: payload.fName + ' ' + payload.lName
             };
         }
         case 'SIGN_IN':
             debugger
-            const user = { fName: action.payload.fName, pass: action.payload.pass },
-                loggedInUser = signInUser(state.users, user),
-                isLoggedIn = !loggedInUser ? false : true,
-                fullName = isLoggedIn ? loggedInUser.fName + ' ' + loggedInUser.lName : '';
+            const user = { fName: action.payload.fName, pass: action.payload.pass };
+            const registredUser = getRegistredUser(state.users, user);
+            const isLoggedIn = !registredUser ? false : true;
+               
             return {
                 ...state,
                 isLoggedIn,
-                fullName,
-                currentUser: loggedInUser
+                fullName : isLoggedIn ? registredUser.fName + ' ' + registredUser.lName : '',
+                currentUser: registredUser
             };
         case 'SIGN_OUT':
             return {

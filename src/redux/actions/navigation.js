@@ -15,7 +15,6 @@ export function showSignIn(state) {
     return {
         type: 'SHOW_SIGN_IN',
         payload: {
-            ...state,
             isSignUpShown: false,
             isSignInShown: true
         }

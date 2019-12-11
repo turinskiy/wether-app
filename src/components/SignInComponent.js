@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 
-import { signIn } from '../redux/actions/accountActions';
+import { signIn } from '../redux/actions/account';
 
 class SignInComponentClass extends React.Component {
 
@@ -69,7 +69,7 @@ class SignInComponentClass extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        ...state.accountReducer
+        account: state.account
     };
 };
 

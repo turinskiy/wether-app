@@ -24,8 +24,8 @@ class WeatherComponentClass extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        ...state.accountReducer,
-        ...state.weatherReducer
+        account: state.account,
+        weather: state.weather
     }
 }
 

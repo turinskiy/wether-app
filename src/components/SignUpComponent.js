@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 
-import { signUp, checkUser } from '../redux/actions/accountActions';
+import { signUp, checkUser } from '../redux/actions/account';
 
 class SignUpComponentClass extends React.Component {
     constructor(props) {
@@ -20,9 +20,7 @@ class SignUpComponentClass extends React.Component {
         this.onFieldChange = this.onFieldChange.bind(this);
     }
 
-    onSignUpClick(e) {
-        e.preventDefault();
-
+    onSignUpClick() {
         this.props.signUp(this.state);
     }
 
@@ -66,8 +64,8 @@ class SignUpComponentClass extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     // debugger
     return {
-        ...state.accountReducer,
-        ...state.navigationReducer
+        account: state.account,
+        navigation: state.navigation
     };
 };
 

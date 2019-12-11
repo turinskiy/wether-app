@@ -27,7 +27,6 @@ export const getWeather = () => {
     }
 }
 
-
 const getWetherStarted = () => ({ type: 'GET_WEATHER_STARTED' });
 
 const getWeatherSuccess = obj => {
@@ -49,6 +48,6 @@ const getWeatherSuccess = obj => {
 const getWeatherFailure = error => ({
     type: 'GET_WEATHER_FAILURE',
     payload: {
-      error
+        error
     }
-  });
+});

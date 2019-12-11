@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 
-import { signOut } from '../redux/actions/accountActions';
+import { signOut } from '../redux/actions/account';
 
 class SignOutComponentClass extends React.Component {
     constructor(props) {
@@ -31,7 +31,7 @@ class SignOutComponentClass extends React.Component {
 const mapStateToProps = (state) => {
 
     return {
-        ...state.accountReducer
+        account: state.account
     }
 }
 

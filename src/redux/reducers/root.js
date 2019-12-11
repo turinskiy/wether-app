@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 
-import accountReducer       from './accountReducer';
+import accountReducer       from './account';
 import weatherReducer       from './weatherReducer';
-import navigationReducer    from './navigationReducer';
+import navigationReducer    from './navigation';
 
 const rootReducer = combineReducers({
-    accountReducer,
-    weatherReducer,
-    navigationReducer
+    account: accountReducer,
+    weather: weatherReducer,
+    navigation: navigationReducer
 });
 
 export default rootReducer;

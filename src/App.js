@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 
-import { showSignUp, showSignIn } from './redux/actions/navigationActions';
+import { showSignUp, showSignIn } from './redux/actions/navigation';
 
 import SignUpForm       from './components/SignUpComponent';
 import SignInForm       from './components/SignInComponent';
@@ -43,8 +43,8 @@ class App extends React.Component {
         
         <hr/>
 
-        { isSignUpShown && !isLoggedIn ? <SignUpForm /> : null }
-        { isSignInShown && !isLoggedIn ? <SignInForm /> : null }
+        { isSignUpShown && !isLoggedIn && <SignUpForm /> }
+        { isSignInShown && !isLoggedIn ? <SignInForm /> : '' }
 
         { isLoggedIn ? <WeatherComponent /> : null }
       </div>
@@ -55,9 +55,9 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   // debugger
   return {
-    ...state.navigationReducer,
-    ...state.accountReducer,
-    ...state.weatherReducer,
+    navigation: state.navigation,
+    account: state.account,
+    weather: state.weather,
   }
 }
 
