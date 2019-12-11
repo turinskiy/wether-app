@@ -33,7 +33,7 @@ class App extends React.Component {
   render() {
     
     const { isLoggedIn, isSignUpShown, isSignInShown } = this.props;
-    console.log(this.props);
+    console.log('this.props: ', this.props);
 
     return (
       <div className="App">
@@ -67,6 +67,5 @@ const mapDispatchToProps = (dispatch) => {
     showSignInForm: (state) => dispatch(showSignIn(state)) 
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

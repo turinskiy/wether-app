@@ -67,3 +67,7 @@ code {
   text-align: right;
   padding-right: 1em;
 }
+
+.red-wrn-text {
+  color: red;
+}

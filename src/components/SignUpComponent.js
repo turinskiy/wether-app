@@ -1,19 +1,19 @@
 import { connect } from 'react-redux';
 import React from 'react';
 
-import { signUp } from '../redux/actions/accountActions';
+import { signUp, checkUser } from '../redux/actions/accountActions';
 
 class SignUpComponentClass extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            // fName: '',
+            fName: '',
             lName: '',
             phone: '+38(097)-123-45-67',
             pass: '',
             isLoggedIn: false
-        }
+        };
 
         // Bindings
         this.onSignUpClick = this.onSignUpClick.bind(this);
@@ -27,21 +27,10 @@ class SignUpComponentClass extends React.Component {
     }
 
     onFieldChange(e) {
-        switch(e.target.id) {
-            case 'fName':
-                this.setState({ fName: e.target.value });
-                break;
-            case 'lName':
-                this.setState({ lName: e.target.value });
-                break;
-            // case 'phone':
-            //     this.setState({ phone: e.target.value });
-            //     break;
-            case 'pass':
-                this.setState({ pass: e.target.value });
-                break;
-            default:
-                return this.state;
+        this.setState({ [e.target.id]: e.target.value });
+        
+        if(e.target.id === 'fName') {
+            this.props.checkUser(e.target.value);
         }
     }
 
@@ -51,8 +40,8 @@ class SignUpComponentClass extends React.Component {
         return (
             <div className="pad-top">
                 <div>
-                    <label htmlFor="fName">First name: </label>
-                    <input id="fName" type="text" className="txt" onChange={ this.onFieldChange } />
+                    <label htmlFor="fName" className={ this.props.isUsernameOcupied ? 'red-wrn-text' : '' }>First name: </label>
+                    <input id="fName" type="text" className="txt" onInput={ this.onFieldChange } />
                 </div>
                 <div>
                     <label htmlFor="lName">Last name: </label>
@@ -67,16 +56,12 @@ class SignUpComponentClass extends React.Component {
                     <input id="pass" type="password" className="txt" onChange={ this.onFieldChange } />
                 </div>
                 <div>
-                    <button onClick={ this.onSignUpClick }>Sign up</button>
+                    <button onClick={ this.onSignUpClick } disabled={ this.props.isUsernameOcupied }>Sign Up</button>
                 </div>
             </div>
         );
     }
 }
-
-// SignUpComponentClass.propTypes = {
-//     handleSignUp: PropTypes.func.isRequired
-// };
 
 const mapStateToProps = (state, ownProps) => {
     // debugger
@@ -88,7 +73,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signUp: (data) => dispatch(signUp(data))
+        signUp: (data) => dispatch(signUp(data)),
+        checkUser: (state) => dispatch(checkUser(state))
     }
 }
 

@@ -3,9 +3,7 @@ export function signUp(state) {
     return {
         type: 'SIGN_UP',
         payload: {
-            ...state,
-            isLoggedIn: true,
-            fullName: state.fName + ' ' + state.lName
+            ...state
         }
     };
 }
@@ -15,9 +13,7 @@ export function signIn(state) {
     return {
         type: 'SIGN_IN',
         payload: {
-            ...state,
-            isLoggedIn: true,
-            fullName: state.fName + ' ' + state.lName
+            ...state
         }
     };
 }
@@ -27,8 +23,17 @@ export function signOut(state) {
     return {
         type: 'SIGN_OUT',
         payload: {
-            ...state,
-            isLoggedIn: false
+            ...state
         }
-    }
-} 
+    };
+}
+
+export function checkUser(fName) {
+    // debugger
+    return {
+        type: 'CHECK_USER',
+        payload: {
+            fName
+        }
+    };
+}
