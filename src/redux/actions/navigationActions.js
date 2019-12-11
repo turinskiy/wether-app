@@ -1,5 +1,5 @@
 export function showSignUp(state) {
-    debugger
+    // debugger
     return {
         type: 'SHOW_SIGN_UP',
         payload: {
@@ -11,7 +11,7 @@ export function showSignUp(state) {
 }
 
 export function showSignIn(state) {
-    debugger
+    // debugger
     return {
         type: 'SHOW_SIGN_IN',
         payload: {

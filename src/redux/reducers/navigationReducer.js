@@ -1,5 +1,6 @@
 
 const navigationReducer = (state = {}, action) => {
+    // debugger
     switch(action.type) {
         case 'SHOW_SIGN_UP':
             return {

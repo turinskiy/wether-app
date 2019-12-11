@@ -82,7 +82,7 @@ const mapStateToProps = (state, ownProps) => {
     // debugger
     return {
         ...state.accountReducer,
-        fullName: state.accountReducer.fName + ' ' + state.accountReducer.lName
+        ...state.navigationReducer
     };
 };
 

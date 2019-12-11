@@ -11,9 +11,10 @@ class WeatherComponentClass extends React.Component {
     }
 
     render() {
-        const { city, weatherDescription, temperature, isLoggedIn} = this.props;
+        const { city, weatherDescription, temperature, isLoggedIn, fullName} = this.props;
         return (
             <div>
+                <h4 className="App-link">{ fullName }</h4>
                 <h3>{ city } ({ weatherDescription }) { temperature } <sup>o</sup>F</h3>
                 { isLoggedIn ? <SignOutComponent /> : null }
             </div>

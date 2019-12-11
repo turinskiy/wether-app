@@ -22,7 +22,7 @@ class SignInComponentClass extends React.Component {
             login       = this.state.fName,
             password    = this.state.pass;
 
-        if(userName.toLowerCase() === login.toLowerCase() && userPass === password) {
+        if(userName && userName.toLowerCase() === login.toLowerCase() && userPass && userPass === password) {
             this.setState({ wrongCreds: false});
             this.props.signIn({fName: userName, pass: userPass});
         }

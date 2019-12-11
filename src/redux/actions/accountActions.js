@@ -1,27 +1,29 @@
 export function signUp(state) {
-    debugger
+    // debugger
     return {
         type: 'SIGN_UP',
         payload: {
             ...state,
-            isRegistered: true
+            isLoggedIn: true,
+            fullName: state.fName + ' ' + state.lName
         }
     };
 }
 
 export function signIn(state) {
-    debugger
+    // debugger
     return {
         type: 'SIGN_IN',
         payload: {
             ...state,
-            isLoggedIn: true
+            isLoggedIn: true,
+            fullName: state.fName + ' ' + state.lName
         }
     };
 }
 
 export function signOut(state) {
-    debugger
+    // debugger
     return {
         type: 'SIGN_OUT',
         payload: {

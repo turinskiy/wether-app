@@ -11,36 +11,41 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {isRegistered: false, isLoggedIn: false, isSignUpShown: false};
+    this.state = { isLoggedIn: false, isSignUpShown: false};
 
     // Bindings
     this.onShowSignUpForm = this.onShowSignUpForm.bind(this);
     this.onShowSignInForm = this.onShowSignInForm.bind(this);
   }
 
-  onShowSignUpForm() {
+  onShowSignUpForm(e) {
+    e.preventDefault();
     // debugger
     this.props.showSignUpForm(this.state);
   }
 
-  onShowSignInForm() {
+  onShowSignInForm(e) {
+    e.preventDefault();
     // debugger
     this.props.showSignInForm(this.state);
   }
 
   render() {
     
-    const { isRegistered, isLoggedIn, isSignUpShown, isSignInShown } = this.props;
+    const { isLoggedIn, isSignUpShown, isSignInShown } = this.props;
+    console.log(this.props);
 
     return (
       <div className="App">
-        { !isSignUpShown ? <button onClick={ this.onShowSignUpForm }>Sign up</button> : null }
+        { !isSignUpShown && !isLoggedIn ? <a href="#" onClick={ this.onShowSignUpForm } className="App-link">Go to Sign up</a> : null }
         
-        { !isSignInShown ? <button onClick={ this.onShowSignInForm }>Sign in</button> : null }
+        { !isSignInShown && !isLoggedIn ? <a href="#" onClick={ this.onShowSignInForm } className="App-link">Go to Sign in</a> : null }
         
+        <hr/>
 
-        { isSignUpShown ? <SignUpForm /> : null }
-        { isSignInShown ? <SignInForm /> : null }
+        { isSignUpShown && !isLoggedIn ? <SignUpForm /> : null }
+        { isSignInShown && !isLoggedIn ? <SignInForm /> : null }
+
         { isLoggedIn ? <WeatherComponent /> : null }
       </div>
     );
@@ -48,11 +53,11 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  debugger
+  // debugger
   return {
+    ...state.navigationReducer,
     ...state.accountReducer,
     ...state.weatherReducer,
-    ...state.navigationReducer
   }
 }
 
