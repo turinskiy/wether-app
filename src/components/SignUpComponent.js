@@ -11,8 +11,7 @@ class SignUpComponentClass extends React.Component {
             fName: '',
             lName: '',
             phone: '+38(097)-123-45-67',
-            pass: '',
-            isLoggedIn: false
+            pass: ''
         };
 
         // Bindings
@@ -34,11 +33,12 @@ class SignUpComponentClass extends React.Component {
 
     render() {
         const { phone } = this.state;
+        const { isUsernameOcupied } = this.props.account;
 
         return (
             <div className="pad-top">
                 <div>
-                    <label htmlFor="fName" className={ this.props.isUsernameOcupied ? 'red-wrn-text' : '' }>First name: </label>
+                    <label htmlFor="fName" className={ isUsernameOcupied ? 'red-wrn-text' : '' }>First name: </label>
                     <input id="fName" type="text" className="txt" onInput={ this.onFieldChange } />
                 </div>
                 <div>
@@ -54,7 +54,7 @@ class SignUpComponentClass extends React.Component {
                     <input id="pass" type="password" className="txt" onChange={ this.onFieldChange } />
                 </div>
                 <div>
-                    <button onClick={ this.onSignUpClick } disabled={ this.props.isUsernameOcupied }>Sign Up</button>
+                    <button onClick={ this.onSignUpClick } disabled={ isUsernameOcupied }>Sign Up</button>
                 </div>
             </div>
         );

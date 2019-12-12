@@ -32,7 +32,7 @@ const accountReducer = function (state = initialState, action) {
             const { payload } = action;      
 
             return {
-                ...state,
+                // ...state,
                 users : [ ...state.users, payload ],
                 currentUser: payload,
                 isLoggedIn: true,
@@ -59,11 +59,14 @@ const accountReducer = function (state = initialState, action) {
                 currentUser: null
             };
         case 'CHECK_USER':
-            // debugger
-            const flag = isNameOcupied(state.users, action.payload.fName);
+            debugger
+            const { payload } = action;
+            const { currentUser, users } = state;
+            
             return {
-                ...state,
-                isUsernameOcupied: flag
+                currentUser,
+                users,
+                isUsernameOcupied: isNameOcupied(users, payload.fName)
             };
         default:
             return state;

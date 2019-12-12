@@ -11,12 +11,14 @@ class WeatherComponentClass extends React.Component {
     }
 
     render() {
-        const { city, weatherDescription, temperature, isLoggedIn, fullName} = this.props;
+        const { city, weatherDescription, temperature } = this.props.weather;
+        const { isLoggedIn, fullName } = this.props.account;
+
         return (
             <div>
                 <h4 className="App-link">{ fullName }</h4>
                 <h3>{ city } ({ weatherDescription }) { temperature } <sup>o</sup>F</h3>
-                { isLoggedIn ? <SignOutComponent /> : null }
+                { isLoggedIn && <SignOutComponent /> }
             </div>
         );
     }
@@ -25,7 +27,8 @@ class WeatherComponentClass extends React.Component {
 const mapStateToProps = (state) => {
     return {
         account: state.account,
-        weather: state.weather
+        weather: state.weather,
+        navigation: state.navigation
     }
 }
 

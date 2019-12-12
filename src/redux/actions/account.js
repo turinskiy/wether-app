@@ -2,7 +2,12 @@ export function signUp(state) {
     // debugger
     return {
         type: 'SIGN_UP',
-        payload:  {fName: state.fName, lName: state.lName, phone: state.phone, pass: state.pass}
+        payload:  {
+            fName: state.fName, 
+            lName: state.lName, 
+            phone: state.phone, 
+            pass: state.pass
+        }
            
     };
 }

@@ -5,7 +5,7 @@ import { showSignUp, showSignIn } from './redux/actions/navigation';
 
 import SignUpForm       from './components/SignUpComponent';
 import SignInForm       from './components/SignInComponent';
-import WeatherComponent from './components/WeatherComponent';
+import HomeComponent    from './components/HomeComponent';
 
 class App extends React.Component {
   constructor(props) {
@@ -32,29 +32,35 @@ class App extends React.Component {
 
   render() {
     
-    const { isLoggedIn, isSignUpShown, isSignInShown } = this.props.navigation;
-    // const { isLoggedIn, isSignUpShown, isSignInShown } = this.props;
+    const { isSignUpShown, isSignInShown } = this.props.navigation;
+    const { isLoggedIn } = this.props.account;
+
     console.log('this.props: ', this.props);
 
     return (
       <div className="App">
-        { !isSignUpShown && !isLoggedIn ? <a href="#" onClick={ this.onShowSignUpForm } className="App-link">Go to Sign up</a> : null }
+        { !isSignUpShown && !isLoggedIn 
+          && <a href="#" onClick={ this.onShowSignUpForm } className="App-link">Go to Sign up</a> }
         
-        { !isSignInShown && !isLoggedIn ? <a href="#" onClick={ this.onShowSignInForm } className="App-link">Go to Sign in</a> : null }
+        { !isSignInShown && !isLoggedIn 
+          && <a href="#" onClick={ this.onShowSignInForm } className="App-link">Go to Sign in</a> }
         
         <hr/>
 
-        { isSignUpShown && !isLoggedIn && <SignUpForm /> }
-        { isSignInShown && !isLoggedIn ? <SignInForm /> : '' }
+        { isSignUpShown && !isLoggedIn 
+          && <SignUpForm /> }
+        { isSignInShown && !isLoggedIn 
+          && <SignInForm /> }
 
-        { isLoggedIn ? <WeatherComponent /> : null }
+        { isLoggedIn 
+          && <HomeComponent /> }
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  // debugger
+  debugger
   return {
     navigation: state.navigation,
     account: state.account,
