@@ -60,7 +60,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  debugger
+  // debugger
   return {
     navigation: state.navigation,
     account: state.account,

@@ -9,11 +9,21 @@ class HomeComponentClass extends React.Component {
         super(props);
     }
 
-    render() {
+    componentDidMount() {
+        //
         const { isLoggedIn } = this.props.account;
+
+        if(!isLoggedIn) {
+            //Redirect user to SignUp page
+        }
+    }
+
+    render() {
+        const { fName, lName } = this.props.account.currentUser;
 
         return (
             <div>
+                <h4 className="App-link">Welcome, { fName + ' ' + lName }</h4>
                 <WeatherComponent />
                 <SignOutComponent />
             </div>

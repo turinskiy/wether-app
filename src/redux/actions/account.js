@@ -8,27 +8,23 @@ export function signUp(state) {
             phone: state.phone, 
             pass: state.pass
         }
-           
     };
 }
 
-export function signIn(state) {
+export function signIn(user) {
     // debugger
     return {
         type: 'SIGN_IN',
         payload: {
-            ...state
+            user
         }
     };
 }
 
-export function signOut(state) {
+export function signOut() {
     // debugger
     return {
-        type: 'SIGN_OUT',
-        payload: {
-            ...state
-        }
+        type: 'SIGN_OUT'
     };
 }
 

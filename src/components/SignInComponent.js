@@ -17,48 +17,41 @@ class SignInComponentClass extends React.Component {
 
     onSignInClick() {
         // debugger
-        const userName  = this.props.fName,
-            userPass    = this.props.pass,
-            login       = this.state.fName,
-            password    = this.state.pass;
+        const { fName, pass } = this.state;
 
-        if(userName && userName.toLowerCase() === login.toLowerCase() && userPass && userPass === password) {
-            this.setState({ wrongCreds: false});
-            this.props.signIn({fName: userName, pass: userPass});
+        if(!fName || !pass) {
+            this.setState({
+                emptyFields: true
+            });
+            return;
         }
-        else {
-            this.setState(
-                { 
-                    wrongCreds: true,
-                    pass: ''
-                }
-            );
-        }
+        this.props.signIn({ fName, pass });
     }
 
     onFieldChange(e) {
-        this.setState({ [e.target.id]: e.target.value });
+        // debugger
+        this.setState({ 
+            [e.target.id]: e.target.value,
+            emptyFields: false
+        });
     }
 
     render() {
-        const { wrongCreds, pass, fName } = this.state;
+        const { emptyFields } = this.state;
+        const { wrongCreds } = this.props.account;
 
         return (
             <div className="pad-top">
                 <div>
-                    <label htmlFor="fName">First name: </label>
-                    <input id="fName" type="text" className="txt" value={ fName } onChange={ this.onFieldChange } />
+                    <label htmlFor="fName">First Name: </label>
+                    <input id="fName" type="text" className="txt" onInput={ this.onFieldChange } />
                 </div>
                 <div>
                     <label htmlFor="pass">Password: </label>
-                    <input id="pass" type="password" className="txt" value={ pass } onChange={ this.onFieldChange } />
+                    <input id="pass" type="password" className="txt" onInput={ this.onFieldChange } />
                 </div>
-                { wrongCreds 
-                    ? <div>
-                        <span className="red-txt">Wrong user name or password</span>
-                    </div>
-                    : null
-                }
+                { wrongCreds && <span className="red-wrn-text"><small>Wrong user name or password</small></span> }
+                { emptyFields && <span className="red-wrn-text"><small>Please fill First Name and Password</small></span> }
                 <div>
                     <button onClick={ this.onSignInClick }>Sign in</button>
                 </div>
@@ -68,6 +61,7 @@ class SignInComponentClass extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    // debugger
     return {
         account: state.account
     };
@@ -75,7 +69,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signIn: (data) => dispatch(signIn(data))
+        signIn: (user) => dispatch(signIn(user))
     }
 }
 

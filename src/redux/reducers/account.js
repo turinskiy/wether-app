@@ -18,7 +18,7 @@ function getRegistredUser(users, user) {
         return false;
     }
 
-    const findUser = (element) => element.fName === user.fName && element.pass === user.pass;
+    const findUser = (element) => element.fName.toLowerCase() === user.fName.toLowerCase() && element.pass === user.pass;
 
     return users.find(findUser);
 }
@@ -32,37 +32,39 @@ const accountReducer = function (state = initialState, action) {
             const { payload } = action;      
 
             return {
-                // ...state,
                 users : [ ...state.users, payload ],
                 currentUser: payload,
-                isLoggedIn: true,
-                fullName: payload.fName + ' ' + payload.lName
+                isLoggedIn: true
             };
         }
-        case 'SIGN_IN':
-            debugger
-            const user = { fName: action.payload.fName, pass: action.payload.pass };
-            const registredUser = getRegistredUser(state.users, user);
-            const isLoggedIn = !registredUser ? false : true;
+        case 'SIGN_IN': {
+            // debugger
+            
+            const { users } = state;
+            const registredUser = getRegistredUser(users, action.payload.user);
+            const isLoggedIn = (!registredUser ? false : true);
                
             return {
-                ...state,
+                // ...state,
+                users,
+                currentUser: registredUser,
                 isLoggedIn,
-                fullName : isLoggedIn ? registredUser.fName + ' ' + registredUser.lName : '',
-                currentUser: registredUser
+                wrongCreds: !isLoggedIn
             };
-        case 'SIGN_OUT':
+        }
+        case 'SIGN_OUT':{
+            // debugger
             return {
-                ...state,
-                ...action.payload,
+                users: state.users,
                 isLoggedIn: false,
                 currentUser: null
             };
+        }
         case 'CHECK_USER':
-            debugger
+            // debugger
             const { payload } = action;
             const { currentUser, users } = state;
-            
+
             return {
                 currentUser,
                 users,
