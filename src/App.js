@@ -11,7 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { isLoggedIn: false, isSignUpShown: false};
+    this.state = { isLoggedIn: false, isSignUpShown: false, isSignInShown: false };
 
     // Bindings
     this.onShowSignUpForm = this.onShowSignUpForm.bind(this);
@@ -32,7 +32,8 @@ class App extends React.Component {
 
   render() {
     
-    const { isLoggedIn, isSignUpShown, isSignInShown } = this.props;
+    const { isLoggedIn, isSignUpShown, isSignInShown } = this.props.navigation;
+    // const { isLoggedIn, isSignUpShown, isSignInShown } = this.props;
     console.log('this.props: ', this.props);
 
     return (

@@ -4,13 +4,13 @@ const navigationReducer = (state = {}, action) => {
     switch(action.type) {
         case 'SHOW_SIGN_UP':
             return {
-                ...state,
-                ...action.payload
+                isSignUpShown: true,
+                isSignInShown: false
             };
         case 'SHOW_SIGN_IN':
             return {
-                ...state,
-                ...action.payload
+                isSignUpShown: false,
+                isSignInShown: true
             }
         default:
             return state;
