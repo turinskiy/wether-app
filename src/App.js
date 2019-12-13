@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import { 
-  Switch, 
+import {
+  Switch,
   Route,
   NavLink,
-  withRouter
+  Redirect
 } from 'react-router-dom';
 
-import SignUpForm       from './components/SignUpComponent';
-import SignInForm       from './components/SignInComponent';
-import HomeComponent    from './components/HomeComponent';
+import SignUpForm from './components/SignUpComponent';
+import SignInForm from './components/SignInComponent';
+import HomeComponent from './components/HomeComponent';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,27 +20,25 @@ class App extends React.Component {
     const { currentUser } = this.props.account;
     console.log('this.props: ', this.props);
 
-    if (currentUser) {
-      return (
-        <div className="App">
-          <HomeComponent />
-        </div>);
-    }
-
     return (
       <div className="App">
-          <NavLink to="/signup" activeClassName="hurray">
-            Sign Up
+        <NavLink to="/signup" activeClassName="hurray">
+          Sign Up
           </NavLink>
-          <NavLink to="/signin" activeClassName="hurray">
-            Sign In
+        <NavLink to="/signin" activeClassName="hurray">
+          Sign In
           </NavLink>
-          <hr />
-          <Switch>
-            <Route path="/signup" component={ SignUpForm } />
-            <Route path="/signin" component={ SignInForm } />
-            <Route path="/home" component={ HomeComponent } />
-          </Switch>
+        <hr />
+        <Switch>
+          <Route path="/signup" component={SignUpForm} />
+          <Route path="/signin" component={SignInForm} />
+          <Route path="/home" render={() => {
+            if (currentUser) {
+              return <HomeComponent />
+            }
+            return <Redirect to="/signin" />
+          }} />
+        </Switch>
       </div>
     );
   }
