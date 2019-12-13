@@ -16,12 +16,12 @@ class SignOutComponentClass extends React.Component {
     }
 
     render() {
-        const { isLoggedIn } = this.props.account;
+        const { currentUser } = this.props.account;
 
         return (
             <div>
-            { isLoggedIn 
-                && <button onClick={ this.onSignOutHandler } >Sign out</button> }
+                { currentUser 
+                    && <button onClick={ this.onSignOutHandler } >Sign out</button> }
             </div>
         );
     }

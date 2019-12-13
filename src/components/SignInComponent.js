@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
+import { Redirect, withRouter } from 'react-router-dom';
 
 import { signIn } from '../redux/actions/account';
 
@@ -38,7 +39,11 @@ class SignInComponentClass extends React.Component {
 
     render() {
         const { emptyFields } = this.state;
-        const { wrongCreds } = this.props.account;
+        const { currentUser, wrongCreds } = this.props.account;
+
+        if(currentUser) {
+            return (<Redirect to="/" />);
+        }
 
         return (
             <div className="pad-top">
@@ -73,5 +78,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const SignInForm = connect(mapStateToProps, mapDispatchToProps)(SignInComponentClass);
+const SignInForm = withRouter(connect(mapStateToProps, mapDispatchToProps)(SignInComponentClass));
 export default SignInForm;

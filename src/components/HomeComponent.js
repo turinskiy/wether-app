@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
+import { withRouter, Redirect } from 'react-router-dom';
 
 import WeatherComponent from './WeatherComponent';
 import SignOutComponent from './SignOutComponent';
@@ -9,21 +10,16 @@ class HomeComponentClass extends React.Component {
         super(props);
     }
 
-    componentDidMount() {
-        //
-        const { isLoggedIn } = this.props.account;
-
-        if(!isLoggedIn) {
-            //Redirect user to SignUp page
-        }
-    }
-
     render() {
-        const { fName, lName } = this.props.account.currentUser;
+        const { currentUser } = this.props.account;
+        
+        if(currentUser == null) { 
+            return <Redirect to="/" />; 
+        }
 
         return (
             <div>
-                <h4 className="App-link">Welcome, { fName + ' ' + lName }</h4>
+                <h4 className="App-link">Welcome, { currentUser.fName + ' ' + currentUser.lName }</h4>
                 <WeatherComponent />
                 <SignOutComponent />
             </div>
@@ -37,6 +33,6 @@ const mapStateToProps = (state) => {
     };
 }
 
-const HomeComponent = connect(mapStateToProps)(HomeComponentClass);
+const HomeComponent = withRouter(connect(mapStateToProps)(HomeComponentClass));
 
 export default HomeComponent;

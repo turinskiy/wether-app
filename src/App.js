@@ -1,7 +1,11 @@
 import { connect } from 'react-redux';
 import React from 'react';
-
-import { showSignUp, showSignIn } from './redux/actions/navigation';
+import { 
+  Switch, 
+  Route,
+  NavLink,
+  withRouter
+} from 'react-router-dom';
 
 import SignUpForm       from './components/SignUpComponent';
 import SignInForm       from './components/SignInComponent';
@@ -10,50 +14,33 @@ import HomeComponent    from './components/HomeComponent';
 class App extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = { isLoggedIn: false, isSignUpShown: false, isSignInShown: false };
-
-    // Bindings
-    this.onShowSignUpForm = this.onShowSignUpForm.bind(this);
-    this.onShowSignInForm = this.onShowSignInForm.bind(this);
-  }
-
-  onShowSignUpForm(e) {
-    e.preventDefault();
-    // debugger
-    this.props.showSignUpForm(this.state);
-  }
-
-  onShowSignInForm(e) {
-    e.preventDefault();
-    // debugger
-    this.props.showSignInForm(this.state);
   }
 
   render() {
-    
-    const { isSignUpShown, isSignInShown } = this.props.navigation;
-    const { isLoggedIn } = this.props.account;
-
+    const { currentUser } = this.props.account;
     console.log('this.props: ', this.props);
+
+    if (currentUser) {
+      return (
+        <div className="App">
+          <HomeComponent />
+        </div>);
+    }
 
     return (
       <div className="App">
-        { !isSignUpShown && !isLoggedIn 
-          && <a href="#" onClick={ this.onShowSignUpForm } className="App-link">Go to Sign up</a> }
-        
-        { !isSignInShown && !isLoggedIn 
-          && <a href="#" onClick={ this.onShowSignInForm } className="App-link">Go to Sign in</a> }
-        
-        <hr/>
-
-        { isSignUpShown && !isLoggedIn 
-          && <SignUpForm /> }
-        { isSignInShown && !isLoggedIn 
-          && <SignInForm /> }
-
-        { isLoggedIn 
-          && <HomeComponent /> }
+          <NavLink to="/signup" activeClassName="hurray">
+            Sign Up
+          </NavLink>
+          <NavLink to="/signin" activeClassName="hurray">
+            Sign In
+          </NavLink>
+          <hr />
+          <Switch>
+            <Route path="/signup" component={ SignUpForm } />
+            <Route path="/signin" component={ SignInForm } />
+            <Route path="/home" component={ HomeComponent } />
+          </Switch>
       </div>
     );
   }
@@ -68,11 +55,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    showSignUpForm: (state) => dispatch(showSignUp(state)),
-    showSignInForm: (state) => dispatch(showSignIn(state)) 
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));

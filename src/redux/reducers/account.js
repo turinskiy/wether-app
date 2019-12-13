@@ -14,8 +14,8 @@ function isNameOcupied(users, wantedUserName) {
 }
 
 function getRegistredUser(users, user) {
-    if(!user || !user.fName) {
-        return false;
+    if(!user || !user.fName || !users || users.length == 0) {
+        return null;
     }
 
     const findUser = (element) => element.fName.toLowerCase() === user.fName.toLowerCase() && element.pass === user.pass;
@@ -33,8 +33,7 @@ const accountReducer = function (state = initialState, action) {
 
             return {
                 users : [ ...state.users, payload ],
-                currentUser: payload,
-                isLoggedIn: true
+                currentUser: payload
             };
         }
         case 'SIGN_IN': {
@@ -42,21 +41,19 @@ const accountReducer = function (state = initialState, action) {
             
             const { users } = state;
             const registredUser = getRegistredUser(users, action.payload.user);
-            const isLoggedIn = (!registredUser ? false : true);
+            const wrongCreds = (!registredUser ? true : false);
                
             return {
                 // ...state,
                 users,
                 currentUser: registredUser,
-                isLoggedIn,
-                wrongCreds: !isLoggedIn
+                wrongCreds
             };
         }
         case 'SIGN_OUT':{
             // debugger
             return {
                 users: state.users,
-                isLoggedIn: false,
                 currentUser: null
             };
         }

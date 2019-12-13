@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
+import { withRouter, Redirect } from 'react-router-dom';
 
 import { signUp, checkUser } from '../redux/actions/account';
 
@@ -20,6 +21,7 @@ class SignUpComponentClass extends React.Component {
     }
 
     onSignUpClick() {
+        console.log('Gotit');
         this.props.signUp(this.state);
     }
 
@@ -33,10 +35,12 @@ class SignUpComponentClass extends React.Component {
 
     render() {
         const { phone } = this.state;
-        const { isUsernameOcupied } = this.props.account;
+        const { isUsernameOcupied, currentUser } = this.props.account;
 
         return (
             <div className="pad-top">
+                { currentUser && <Redirect to="/home" /> }
+                
                 <div>
                     <label htmlFor="fName" className={ isUsernameOcupied ? 'red-wrn-text' : '' }>First name: </label>
                     <input id="fName" type="text" className="txt" onInput={ this.onFieldChange } />
@@ -76,6 +80,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const SignUpForm = connect(mapStateToProps, mapDispatchToProps)(SignUpComponentClass);
+const SignUpForm = withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUpComponentClass));
 
 export default SignUpForm;
