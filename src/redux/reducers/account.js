@@ -1,3 +1,5 @@
+import { registerUser} from '../../services/AccountService';
+
 const initialState = {
     users: [],
     currentUser: null
@@ -18,9 +20,18 @@ function getRegistredUser(users, user) {
         return null;
     }
 
+    // We hape some service to work with Userss storage
+    // we pass username, password to the service
+    // The service will return response to us
+    // AccountService.checkIfUserRegistered(username: string, password: string): bool
+
     const findUser = (element) => element.fName.toLowerCase() === user.fName.toLowerCase() && element.pass === user.pass;
 
     return users.find(findUser);
+}
+
+function registerNewUser(users, user) {
+
 }
 
 const accountReducer = function (state = initialState, action) {
@@ -29,7 +40,7 @@ const accountReducer = function (state = initialState, action) {
     switch(action.type) {
         case 'SIGN_UP': {
             // debugger
-            const { payload } = action;      
+            const { payload } = action;
 
             return {
                 users : [ ...state.users, payload ],
