@@ -16,12 +16,9 @@ class App extends React.Component {
     super(props);
   }
 
-  render() {
-    const { currentUser } = this.props.account;
-    console.log('this.props: ', this.props);
-
+  renderApp() {
     return (
-      <div className="App">
+      <>
         <NavLink to="/signup" activeClassName="hurray">
           Sign Up
           </NavLink>
@@ -32,13 +29,19 @@ class App extends React.Component {
         <Switch>
           <Route path="/signup" component={SignUpForm} />
           <Route path="/signin" component={SignInForm} />
-          <Route path="/home" render={() => {
-            if (currentUser) {
-              return <HomeComponent />
-            }
-            return <Redirect to="/signin" />
-          }} />
+          <Route path="/home" component={HomeComponent} />
         </Switch>
+      </>
+    );
+  }
+
+  render() {
+    const { currentUser } = this.props.account;
+    console.log('this.props: ', this.props);
+    //
+    return (
+      <div className="App">
+        { currentUser ? <HomeComponent /> : this.renderApp() }
       </div>
     );
   }
@@ -53,4 +56,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(App));
+export default connect(mapStateToProps)(App);
