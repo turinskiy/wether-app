@@ -1,15 +1,14 @@
 // This service provides methods to:
 import { setCookie, getCookie } from './data/cookies';
 
+const fieldSepar = '::';
+const usersSepar = '(+)';//
+
 // 1. Sign In
 // 2. Sign Up
 // 3. Sign Out
 // 4. Check if user registered
 // 5. Check is username occupied
-
-// (function () {
-
-// })();
 
 export const checkIfUserRegistered = (username, password) => {
     // Get all users
@@ -20,18 +19,22 @@ export const checkIfUserRegistered = (username, password) => {
 };
 
 export const getAllUsers = () => {
-    return getCookie('users');
+    const usersString = getCookie('users');
+    
+    if(!usersString || usersString.length === 0) {
+        return '';
+    }
+
+    return usersString;
 }
 
-export const saveUser = (username, userlastname, userphone, userpass) => {
-    // Save user to cookies
-    //
-    // 1. Get all users from cookie
+export const registerNewUser = (user) => {
     const users = getAllUsers();
-    const userToAdd = username + '::' + userlastname + '::' + userphone + '::' + userpass;
+    const userToAdd = user.fName + fieldSepar + user.lName + fieldSepar + user.phone + fieldSepar + user.pass;
+    const res = users && users.length > 0 
+        ? users + usersSepar + userToAdd 
+        : userToAdd;
 
-    debugger
-    // 2. 
-    setCookie('users', users + '(+)' + userToAdd);
+    setCookie('users', res);
     // setCookie('userpass', userpass);
 }

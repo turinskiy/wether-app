@@ -5,7 +5,7 @@
 // 3. checkCookie
 
 export const setCookie = (cname, cvalue, exdays = '') => {
-    debugger
+    // debugger
     exdays = exdays === '' ? 365 : exdays;
     cvalue = encodeURIComponent(cvalue);
     

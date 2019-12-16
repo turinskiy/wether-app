@@ -1,4 +1,4 @@
-import { saveUser, getAllUsers } from '../../services/AccountService';
+import { registerNewUser, getAllUsers } from '../../services/AccountService';
 
 const initialState = {
     users: [],
@@ -30,22 +30,14 @@ function getRegistredUser(users, user) {
     return users.find(findUser);
 }
 
-function registerNewUser(user) {
-    saveUser(user.fName, user.pass);
-}
-
 function getAllRegisteredAccounts() {
     return getAllUsers();
 }
 
 const accountReducer = function (state = initialState, action) {
-
     // debugger
     switch(action.type) {
         case 'SIGN_UP': {
-            // const test = getAllRegisteredAccounts();
-            debugger
-
             const { payload } = action;
             registerNewUser(payload);
 
