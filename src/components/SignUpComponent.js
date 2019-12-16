@@ -68,8 +68,7 @@ class SignUpComponentClass extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     // debugger
     return {
-        account: state.account,
-        navigation: state.navigation
+        account: state.account
     };
 };
 

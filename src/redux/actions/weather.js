@@ -51,3 +51,7 @@ const getWeatherFailure = error => ({
         error
     }
 });
+
+export const clearWeather = () => ({
+    type: 'CLEAR'
+})

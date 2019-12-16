@@ -29,16 +29,15 @@ class App extends React.Component {
         <Switch>
           <Route path="/signup" component={SignUpForm} />
           <Route path="/signin" component={SignInForm} />
-          <Route path="/home" component={HomeComponent} />
+          {/* <Route path="/home" component={HomeComponent} /> */}
         </Switch>
       </>
     );
   }
-
   render() {
     const { currentUser } = this.props.account;
     console.log('this.props: ', this.props);
-    //
+
     return (
       <div className="App">
         { currentUser ? <HomeComponent /> : this.renderApp() }
@@ -50,7 +49,6 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   // debugger
   return {
-    navigation: state.navigation,
     account: state.account,
     weather: state.weather,
   }
