@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import WeatherComponent from './WeatherComponent';
 import SignOutComponent from './SignOutComponent';
@@ -14,7 +14,7 @@ class HomeComponentClass extends React.Component {
         const { currentUser } = this.props.account;
         
         if(currentUser == null) { 
-            return <Redirect to="/" />; 
+            return <Redirect to="/signin" />; 
         }
 
         return (
@@ -33,6 +33,6 @@ const mapStateToProps = (state) => {
     };
 }
 
-const HomeComponent = withRouter(connect(mapStateToProps)(HomeComponentClass));
+const HomeComponent = connect(mapStateToProps)(HomeComponentClass);
 
 export default HomeComponent;

@@ -22,7 +22,7 @@ class WeatherComponentClass extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        weather: state.weather,
+        weather: state.weather
     }
 }
 

@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 
 import { signOut } from '../redux/actions/account';
+import { clearWeather } from '../redux/actions/weather';
 
 class SignOutComponentClass extends React.Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class SignOutComponentClass extends React.Component {
     }
 
     onSignOutHandler() {
+        this.props.clearWeather();
         this.props.onSignOut();
     }
 
@@ -36,7 +38,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onSignOut: () => dispatch(signOut())
+        onSignOut: () => dispatch(signOut()),
+        clearWeather: () => dispatch(clearWeather())
     }
 }
 

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import { signIn } from '../redux/actions/account';
 
@@ -78,5 +78,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const SignInForm = withRouter(connect(mapStateToProps, mapDispatchToProps)(SignInComponentClass));
+const SignInForm = connect(mapStateToProps, mapDispatchToProps)(SignInComponentClass);
 export default SignInForm;

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import { signUp, checkUser } from '../redux/actions/account';
 
@@ -68,8 +68,7 @@ class SignUpComponentClass extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     // debugger
     return {
-        account: state.account,
-        navigation: state.navigation
+        account: state.account
     };
 };
 
@@ -80,6 +79,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const SignUpForm = withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUpComponentClass));
+const SignUpForm = connect(mapStateToProps, mapDispatchToProps)(SignUpComponentClass);
 
 export default SignUpForm;

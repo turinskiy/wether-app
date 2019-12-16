@@ -9,8 +9,7 @@ const weatherReducer = function (state = {}, action) {
             };
         case 'GET_WEATHER_STARTED':
             return {
-                ...state,
-                ...action.payload
+                ...state
             };
         case 'GET_WEATHER_SUCCESS':
             return {
@@ -21,6 +20,10 @@ const weatherReducer = function (state = {}, action) {
             return {
                 ...state,
                 ...action.payload
+            };
+        case 'CLEAR':
+            return {
+                
             };
         default:
             return state;
