@@ -37,6 +37,8 @@ class App extends React.Component {
   render() {
     const { currentUser } = this.props.account;
     console.log('this.props: ', this.props);
+    //
+    console.log(decodeURIComponent(document.cookie));
 
     return (
       <div className="App">

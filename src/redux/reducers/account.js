@@ -1,4 +1,4 @@
-import { registerUser} from '../../services/AccountService';
+import { saveUser, getAllUsers } from '../../services/AccountService';
 
 const initialState = {
     users: [],
@@ -20,7 +20,7 @@ function getRegistredUser(users, user) {
         return null;
     }
 
-    // We hape some service to work with Userss storage
+    // We have some service to work with Users storage
     // we pass username, password to the service
     // The service will return response to us
     // AccountService.checkIfUserRegistered(username: string, password: string): bool
@@ -30,8 +30,12 @@ function getRegistredUser(users, user) {
     return users.find(findUser);
 }
 
-function registerNewUser(users, user) {
+function registerNewUser(user) {
+    saveUser(user.fName, user.pass);
+}
 
+function getAllRegisteredAccounts() {
+    return getAllUsers();
 }
 
 const accountReducer = function (state = initialState, action) {
@@ -39,8 +43,11 @@ const accountReducer = function (state = initialState, action) {
     // debugger
     switch(action.type) {
         case 'SIGN_UP': {
-            // debugger
+            // const test = getAllRegisteredAccounts();
+            debugger
+
             const { payload } = action;
+            registerNewUser(payload);
 
             return {
                 users : [ ...state.users, payload ],
