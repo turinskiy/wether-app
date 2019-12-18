@@ -10,15 +10,44 @@ const usersSepar = '(+)';//
 // 4. Check if user registered
 // 5. Check is username occupied
 
-export const checkIfUserRegistered = (username, password) => {
-    // Get all users
-    // Check if username exist ib DB
-    // Check if the passwords are equal
-    // Return result
-    return true;
+export const isNameOcupied = (wantedUserName) => {
+    let users ='';
+
+    if(users.length === 0) {
+        return false;
+    }
+
+    const findName = (element) => element.fName === wantedUserName;
+
+    return users.some(findName);
+}
+
+export const getUserIfRegistered = (username, password) => {
+    console.log(username, password);
+    const users = getAllUsersObject();
+    console.log(users);
+    const findUser = (element) => element.fName.toLowerCase() === username.toLowerCase() && element.pass === password;
+
+    return users.find(findUser);
 };
 
-export const getAllUsers = () => {
+const getAllUsersObject = () => {
+    let usersString = getAllUsersString();
+    let usersParts = usersString.split(usersSepar);
+
+    return usersParts.map((usersPart) => {
+        console.log(usersPart);
+        let userParts = usersPart.split(fieldSepar);
+        return {
+            fName:  userParts[0],
+            lName:  userParts[1],
+            phone:  userParts[2],
+            pass:   userParts[3]
+        }
+    })
+}
+
+export const getAllUsersString = () => {
     const usersString = getCookie('users');
     
     if(!usersString || usersString.length === 0) {
@@ -29,7 +58,7 @@ export const getAllUsers = () => {
 }
 
 export const registerNewUser = (user) => {
-    const users = getAllUsers();
+    const users = getAllUsersString();
     const userToAdd = user.fName + fieldSepar + user.lName + fieldSepar + user.phone + fieldSepar + user.pass;
     const res = users && users.length > 0 
         ? users + usersSepar + userToAdd 
