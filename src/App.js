@@ -4,12 +4,13 @@ import {
   Switch,
   Route,
   NavLink,
-  Redirect
+  // Redirect
 } from 'react-router-dom';
 
 import SignUpForm from './components/SignUpComponent';
 import SignInForm from './components/SignInComponent';
 import HomeComponent from './components/HomeComponent';
+import MenuComponent from './components/MenuComponent';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,20 +19,25 @@ class App extends React.Component {
 
   renderApp() {
     return (
-      <>
-        <NavLink to="/signup" activeClassName="hurray">
-          Sign Up
-          </NavLink>
-        <NavLink to="/signin" activeClassName="hurray">
-          Sign In
-          </NavLink>
-        <hr />
-        <Switch>
-          <Route path="/signup" component={SignUpForm} />
-          <Route path="/signin" component={SignInForm} />
-          {/* <Route path="/home" component={HomeComponent} /> */}
-        </Switch>
-      </>
+      <div style={{display: "flex", flexDirection: "row"}}>
+        <div>
+          <MenuComponent />
+        </div>
+        <div>
+          <NavLink to="/signup" activeClassName="hurray">
+            Sign Up
+            </NavLink>
+          <NavLink to="/signin" activeClassName="hurray">
+            Sign In
+            </NavLink>
+          <hr />
+          <Switch>
+            <Route path="/signup" component={SignUpForm} />
+            <Route path="/signin" component={SignInForm} />
+            {/* <Route path="/home" component={HomeComponent} /> */}
+          </Switch>
+        </div>
+      </div>
     );
   }
   render() {

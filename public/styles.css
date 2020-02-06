@@ -86,3 +86,43 @@ a {
   text-decoration: none;
   background-color: gray;
 }
+
+/* +++++++++++++++++++++++++++++++ */
+.parent {
+  display: flex;
+  flex-direction: column;
+  /* flex-grow: 1; */
+  border: 1px solid black;
+  height: 100%;
+  width: 15rem;
+}
+
+.item {            
+  padding: .5rem;
+  border: 1px solid black;
+}
+
+.logo {
+  flex-grow: 0;
+}
+.user {
+  flex-grow: 0;
+}
+.menu-items {
+  flex-grow: 1;
+  /* overflow-x: scroll;
+  overflow-y: scroll;
+  overflow-y: hidden; */
+  /* overflow: hidden; */
+
+  overflow-y: hidden;
+  overflow-x: hidden;
+  flex-basis: 0;
+  justify-content: flex-start;
+}
+.theme {
+  flex-grow: 0;
+}
+.support {
+  flex-grow: 1;
+}
